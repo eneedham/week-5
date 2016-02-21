@@ -149,5 +149,47 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 ===================== */
 
 $(document).ready(function() {
+  $("#main-heading").text("The best heading ever");
+  $("#text-label1").text("Latitude");
+  $("#text-label2").text("Longitude:");
+  $("#text-label3").text("Description:");
+  $("#number-label").text("How many ice cream cones would you eat?");
+  $("#checkbox-label1").text("Are you lactose-intolerant?");
+  $("#checkbox-label2").text("Are you a dietician?");
+  $("#color-label").text("Marker Color");
+
+  $("#text-input1").val(39.920446).prop('disabled', false);
+  $("#text-input2").val(-75.161955).prop('disabled', false);
+  $("#text-input3").val("A Place in South Philadelphia").prop('disabled', false);
+  $("#numeric-input").val(13).prop('disabled', false);
+  $("#cbox-input1").prop("checked", true).prop('disabled', false);
+  $("#cbox-input2").prop("checked", false).prop('disabled', false);
+  $("#color-input").val("#ff6600").prop('disabled', false);
+
+  var myIcon = L.divIcon({
+    className: "labelClass",
+    html: "click this marker!",
+    iconSize: [60, 60]
+  });
+
+$("button").click(function(){ var myForm = {"LAT": $("#text-input1").val(), "LONG": $("#text-input2").val(), "DESC":   $("#text-input3").val(),
+    "HowManyCones":   $("#numeric-input").val(), "LacIntolerant": $("#cbox-input1").prop("checked"),
+    "Dietician": $("#cbox-input2").prop("checked"), "Color": $("#color-input").val() };
+    console.log(myForm);
+    // L.circleMarker([myForm.LAT, myForm.LONG], {radius: 10,
+    // fillColor: myForm.Color,
+    // color: "#000",
+    // weight: 1,
+    // opacity: 1,
+    // fillOpacity: 0.8}).addTo(map).bindPopup(myForm.DESC);
+    L.marker([myForm.LAT, myForm.LONG], {icon: myIcon}).addTo(map).bindPopup(myForm.DESC);
+  });
+
+
+
+
+
+
+
   // Do your stuff here
 });
